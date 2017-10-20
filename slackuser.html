@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HNG Season2.</h2>
+<p>Participant slackid.</p>
+
+<p id="demo"></p>
+<p id ="number"></p>
+
+<script>
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        var text = "";
+        var i;
+        var d=0;
+        for (i = 0; i < myObj.members.length ; i++)
+        {
+    		text += myObj.members[i].name  + "<br>";
+            d = myObj.members.length;
+        
+        }
+         document.getElementById("demo").innerHTML = text;
+        document.getElementById("number").innerHTML = d;
+       
+        
+    }
+};
+xmlhttp.open("GET", "https://slack.com/api/users.list?token=xoxp-126706790599-226455408432-258362977697-73aaa82121ff98584b730dbd80bd20d8&presence=false&pretty=1 ", true);
+xmlhttp.send();
+
+</script>
+
+
+
+</body>
+</html>
